@@ -3,38 +3,45 @@ const startBtn = document.getElementById("start-btn");
 const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
 const retryBtn = document.getElementById("retry-btn");
+const header = document.querySelector(".main-header");
+const results = document.querySelector(".results");
+const btnContainer = document.querySelector(".btn-container");
+const mainContainer = document.querySelector(".main-container");
+const entity = document.querySelector(".entity");
+const deportment = document.querySelector(".deportment");
+const prescriptionPeriod = document.querySelector(".prescription-period");
 let crimes_committed = [];
 
 let crimes_n_punishment = {
   0: {
-    crime: "Trafficking",
-    imprisonment: "20 years",
-    fine: "Not less than One million pesos (P1,000,000.00) but not more than Two million pesos (P2,000,000.00)",
+    crime: " Acts of Trafficking",
+    punishment:
+      "Imprisonment of twenty (20) years and a fine of not less than One million pesos (P1,000,000.00) but not more than Two million pesos (P2,000,000.00)",
   },
   1: {
-    crime: "Promotion of human trafficking",
-    imprisonment: "15 years",
-    fine: "Not less than Five hundred thousand pesos (P500,000.00) but not more than One million pesos (P1,000,000.00)",
+    crime: "Promotion of Human Trafficking",
+    punishment:
+      "Imprisonment of fifteen (15) years and a fine of not less than Five hundred thousand pesos (P500,000.00) but not more than One million pesos (P1,000,000.00)",
   },
   2: {
-    crime: "Qualified trafficking",
-    imprisonment: "life imprisonment",
-    fine: "Not less than Two million pesos (P2,000,000.00) but not more than Five million pesos (P5,000,000.00)",
+    crime: "Qualified Trafficking",
+    punishment:
+      "Life imprisonment and a fine of not less than Two million pesos (P2,000,000.00) but not more than Five million pesos (P5,000,000.00)",
   },
   3: {
-    crime: "Breach of confidentiality",
-    imprisonment: "6 years",
-    fine: "Not less than Five hundred thousand pesos (P500,000.00) but not more than One million pesos (P1,000,000.00)",
+    crime: "Breach of Confidentiality",
+    punishment:
+      "imprisonment of six (6) years and a fine of not less than Five hundred thousand pesos (P500,000.00) but not more than One million pesos (P1,000,000.00)",
   },
   4: {
-    crime: "Use of trafficked persons",
+    crime: "Use of trafficked Persons",
     firstOffense: {
-      commService: "6 months",
-      fine: "Fifty thousand pesos (P50,000.00);",
+      punishment:
+        "Six (6) months of community service as may be determined by the court and a fine of Fifty thousand pesos (P50,000.00)",
     },
     subseqOffense: {
-      imprisonment: "1 year",
-      fine: "One hundred thousand pesos (P100,000.00)",
+      punishment:
+        "Imprisonment of one (1) year and a fine of One hundred thousand pesos (P100,000.00)",
     },
   },
 };
@@ -43,8 +50,10 @@ let idx = 0;
 let isEntity = false; // checks whether penalty is imposed on the responsible owner of a person
 let isForeigner = false; // handles the barring of foreigners
 let isSyndicate = false; // handles the prescriptive period
-
+let useTrafficked = false;
+let moreThanOnce = false;
 startBtn.addEventListener("click", startTest);
+
 let questions = [
   // Trafficking Questions
   "Did the person recruit, transport, harbor, provide, or receive any person under the pretext of employment or training, with the intent of subjecting them to prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
@@ -77,35 +86,114 @@ let questions = [
   "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
   "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
   "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
-
   // If the person is an entity
   "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
   // If the person is a foreigner
   "Is the person a foreigner?",
   // User of trafficked persons
   "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
+  "Did the person engage in the use of trafficked persons for prostitution more than once?",
+  // "Is a syndicate"
+  "Is the person involved operate as part of a syndicate?",
 ];
 function displayQuestion() {
   questionText.textContent = questions[idx];
 }
 
 function startTest() {
-  displayQuestion();
-  startBtn.style.display = "none";
-  retryBtn.style.display = "none";
-
-  yesBtn.style.display = "inline-block";
-  noBtn.style.display = "inline-block";
-}
-
-function endTest() {
-  yesBtn.style.display = "none";
-  noBtn.style.display = "none";
-  retryBtn.style.display = "inline-block";
-  idx = 0;
   isEntity = false;
   isForeigner = false;
   isSyndicate = false;
+  useTrafficked = false;
+  moreThanOnce = false;
+  displayQuestion();
+  crimes_committed = [];
+  removeResults();
+  startBtn.style.display = "none";
+  retryBtn.style.display = "none";
+  questionText.style.display = "block";
+  header.textContent = "Republic Act No. 9208";
+  results.style.display = "none";
+  yesBtn.style.display = "inline-block";
+  noBtn.style.display = "inline-block";
+  mainContainer.style.height = "70%";
+}
+
+function endTest() {
+  idx = 0;
+  console.log(crimes_committed);
+  mainContainer.style.height = "90%";
+  questionText.textContent = "";
+  questionText.style.display = "none";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+  header.style.display = "block";
+  header.textContent = "Offenses";
+  retryBtn.style.display = "inline-block";
+
+  results.style.display = "block";
+  addResults();
+}
+
+function addResults() {
+  if (crimes_committed.length == 0) {
+    return;
+  }
+  crimes_committed.forEach((offense) => {
+    // Create the main offense div
+    const offenseDiv = document.createElement("div");
+    offenseDiv.classList.add("offense");
+
+    // Create the h1 element for the crime
+    const crimeElement = document.createElement("h1");
+    crimeElement.classList.add("crime");
+    crimeElement.textContent = offense.crime;
+
+    // Create the p element for the punishment
+    const punishmentElement = document.createElement("p");
+    punishmentElement.classList.add("punishment");
+    punishmentElement.textContent = offense.punishment;
+
+    // Append the crime and punishment elements to the offense div
+    offenseDiv.appendChild(crimeElement);
+    offenseDiv.appendChild(punishmentElement);
+
+    // Append the offense div to the offensesContainer
+    results.appendChild(offenseDiv);
+  });
+  if (isEntity) {
+    const entityParagraph = document.createElement("p");
+    entityParagraph.classList.add("conditional", "entity");
+
+    const italicText = document.createElement("i");
+    italicText.textContent =
+      "The penalty will be imposed on the owner, president, partner, manager, or any responsible officer involved in the crime. The erring agency's SEC registration and operating license will be permanently revoked, and these individuals will be banned from operating similar businesses under a different name.";
+
+    entityParagraph.appendChild(italicText);
+    results.appendChild(entityParagraph);
+  }
+
+  if (isForeigner) {
+    const deportmentDiv = document.createElement("p");
+    deportmentDiv.classList.add("conditional", "deportment");
+    deportmentDiv.innerHTML = `<em>The offender shall be immediately deported after serving his sentence and be barred permanently from entering the country.</em>`;
+    results.appendChild(deportmentDiv);
+  }
+
+  const prescriptionPeriod = document.createElement("p");
+  prescriptionPeriod.classList.add("conditional", "prescription-period");
+  prescriptionPeriod.innerHTML = `<em>The case should be prescribed within ${
+    isSyndicate ? 20 : 10
+  } years.</em>`;
+
+  results.appendChild(prescriptionPeriod);
+}
+
+function removeResults() {
+  // Clear all child elements inside the results container
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
 }
 
 function nextQuestion() {
@@ -119,37 +207,54 @@ function skipQuestion(num) {
 }
 
 function checkAnswer(ans) {
-  if (idx >= questions.length - 1) {
-    alert("The test is done!");
-    endTest();
-  }
   console.log(idx);
   if (ans == true) {
     if (idx <= 7) {
       console.log("trafficking!");
+      crimes_committed.push(crimes_n_punishment[0]);
       skipQuestion(8);
       return;
     } else if (idx <= 14) {
       console.log("Promotion of trafficking!");
+      crimes_committed.push(crimes_n_punishment[1]);
+
       skipQuestion(15);
       return;
     } else if (idx <= 21) {
       console.log("Qualified trafficking!");
+      crimes_committed.push(crimes_n_punishment[2]);
       skipQuestion(22);
       return;
     } else if (idx <= 26) {
       console.log("Breach of confidentiality!");
+      crimes_committed.push(crimes_n_punishment[3]);
       skipQuestion(27);
       return;
     } else if (idx == 27) {
+      isEntity = true;
       console.log("entity!");
     } else if (idx == 28) {
+      isForeigner = true;
       console.log("foreigner!");
     } else if (idx == 29) {
+      useTrafficked = true;
+      crimes_committed.push(crimes_n_punishment[4]);
       console.log("User of trafficked persons!");
+    } else if (idx == 30) {
+      if (useTrafficked) {
+        moreThanOnce = true;
+        console.log("HOLY COW!");
+      }
+      console.log("Is a syndicate!");
+    } else if (idx == 31) {
+      isSyndicate = true;
+      console.log("Is a syndicate!");
     }
-    nextQuestion();
   } else {
-    nextQuestion();
   }
+  if (idx >= questions.length - 1) {
+    endTest();
+    return;
+  }
+  nextQuestion();
 }

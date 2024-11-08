@@ -17,8 +17,9 @@ body {
   position: relative;
   padding: 1rem;
   width: 60%;
-  height: 700px;
+  height: 90%;
   max-width: 1000px;
+  max-height: 1200px;
   background: white;
   border: 2px solid black;
   border-radius: 0.5rem;
@@ -27,6 +28,20 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.results {
+  /* background-color: green; */
+  margin: auto;
+  width: 80%;
+  height: 70%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid black;
+  color: black;
+  overflow-y: scroll;
+  display: none;
+}
+
 
 .info-container {
   position: absolute;
@@ -64,9 +79,20 @@ p {
   line-height: 1.5;
 }
 
+.question{
+  text-align: center;
+  padding-inline: 3rem;
+  margin-top: 3.5rem;
+  font-size: 1.8rem;
+}
+
+/* .conditional{
+  display: none;
+} */
+
 .btn-container {
   position: absolute;
-  bottom: 5rem;
+  bottom: 3rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -89,7 +115,9 @@ p {
   background: rgb(228, 84, 84);
 }
 
-#no-btn, #yes-btn, #retry-btn{
+#no-btn,
+#yes-btn,
+#retry-btn {
   display: none;
 }
 
@@ -100,7 +128,6 @@ p {
   border-radius: 0.5rem;
   cursor: pointer;
 }
-
 
 .help-btn {
   position: absolute;

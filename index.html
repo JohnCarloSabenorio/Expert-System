@@ -8,29 +8,46 @@
   </head>
   <body>
     <div class="info-container">
-      <button type="button" class="close-btn">&times;</button>
+      <button type="button" class="close-btn" onclick="closeInfoContainer()">
+        &times;
+      </button>
 
       <div class="def-container">
-        <h1 class="header">Word</h1>
-        <p class="paragraph definition">
-          Lorem ipsum odor amet, consectetuer adipiscing elit. Sodales feugiat
-          vel massa aptent cursus class est. Tempus inceptos a curabitur morbi
-          malesuada sociosqu. Sodales iaculis id posuere risus turpis lacus.
-          Magnis quam integer quisque laoreet consequat pulvinar! Rutrum iaculis
-          senectus massa mus congue in metus. Rutrum parturient montes mi
-          maximus, finibus aenean. Aliquet senectus torquent commodo augue
-          conubia torquent pretium scelerisque non. Facilisis in pellentesque
-          luctus class amet.
-        </p>
+        <h1 class="header">Definition of Terms</h1>
+          <p><strong>(a) <span class="term">Trafficking in Persons</span></strong> - refers to the recruitment, transportation, transfer or harboring, or receipt of persons with or without the victim's consent or knowledge, within or across national borders by means of threat or use of force, or other forms of coercion, abduction, fraud, deception, abuse of power or of position, taking advantage of the vulnerability of the person, or, the giving or receiving of payments or benefits to achieve the consent of a person having control over another person for the purpose of exploitation which includes at a minimum, the exploitation or the prostitution of others or other forms of sexual exploitation, forced labor or services, slavery, servitude or the removal or sale of organs.</p>
+        
+          <p>The recruitment, transportation, transfer, harboring or receipt of a child for the purpose of exploitation shall also be considered as "trafficking in persons" even if it does not involve any of the means set forth in the preceding paragraph.</p>
+        
+          <p><strong>(b) <span class="term">Child</span></strong> - refers to a person below eighteen (18) years of age or one who is over eighteen (18) but is unable to fully take care of or protect himself/herself from abuse, neglect, cruelty, exploitation, or discrimination because of a physical or mental disability or condition.</p>
+        
+          <p><strong>(c) <span class="term">Prostitution</span></strong> - refers to any act, transaction, scheme or design involving the use of a person by another, for sexual intercourse or lascivious conduct in exchange for money, profit or any other consideration.</p>
+        
+          <p><strong>(d) <span class="term">Forced Labor and Slavery</span></strong> - refer to the extraction of work or services from any person by means of enticement, violence, intimidation or threat, use of force or coercion, including deprivation of freedom, abuse of authority or moral ascendancy, debt-bondage or deception.</p>
+        
+          <p><strong>(e) <span class="term">Sex Tourism</span></strong> - refers to a program organized by travel and tourism-related establishments and individuals which consists of tourism packages or activities, utilizing and offering escort and sexual services as enticement for tourists. This includes sexual services and practices offered during rest and recreation periods for members of the military.</p>
+        
+          <p><strong>(f) <span class="term">Sexual Exploitation</span></strong> - refers to participation by a person in prostitution or the production of pornographic materials as a result of being subjected to a threat, deception, coercion, abduction, force, abuse of authority, debt bondage, fraud or through abuse of a victim's vulnerability.</p>
+        
+          <p><strong>(g) <span class="term">Debt Bondage</span></strong> - refers to the pledging by the debtor of his/her personal services or labor or those of a person under his/her control as security or payment for a debt, when the length and nature of services is not clearly defined or when the value of the services as reasonably assessed is not applied toward the liquidation of the debt.</p>
+        
+          <p><strong>(h) <span class="term">Pornography</span></strong> - refers to any representation, through publication, exhibition, cinematography, indecent shows, information technology, or by whatever means, of a person engaged in real or simulated explicit sexual activities or any representation of the sexual parts of a person for primarily sexual purposes.</p>
+        
+          <p><strong>(i) <span class="term">Council</span></strong> - shall mean the Inter-Agency Council Against Trafficking created under Section 20 of this Act.</p>
+        
       </div>
     </div>
+
+    <!-- <div class = "progress-bar">
+      <div class = "progress"></div>
+    </div> -->
     <div class="main-container">
       <h1 class="header main-header">Republic Act No. 9208</h1>
       <p class="question">
-        This expert system will cover the Republic act No. 9208, also known as the "Anti-Trafficking in Persons Act of 2003," was enacted
-        on May 26, 2003, to address the growing issue of human trafficking in
-        the Philippines, particularly the trafficking of women and children.
-        This law aims to eliminate trafficking by establishing policies and
+        This expert system will cover the Republic act No. 9208, also known as
+        the "Anti-Trafficking in Persons Act of 2003," was enacted on May 26,
+        2003, to address the growing issue of human trafficking in the
+        Philippines, particularly the trafficking of women and children. This
+        law aims to eliminate trafficking by establishing policies and
         institutional mechanisms to protect and support victims. It sets out
         penalties for individuals involved in trafficking and outlines the
         responsibilities of the government and other entities in preventing
@@ -39,9 +56,7 @@
         Philippines' commitment to combating human trafficking and upholding the
         rights and welfare of vulnerable individuals.
       </p>
-      <div class="results">
-
-      </div>
+      <div class="results"></div>
       <div class="btn-container">
         <button
           type="button"
@@ -78,7 +93,9 @@
       </div>
     </div>
 
-    <button type="button" class="help-btn">?</button>
+    <button type="button" class="help-btn" onclick="displayInfoContainer()">
+      ?
+    </button>
     <script src="index.js"></script>
   </body>
 </html>

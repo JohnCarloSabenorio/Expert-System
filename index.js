@@ -10,6 +10,8 @@ const mainContainer = document.querySelector(".main-container");
 const entity = document.querySelector(".entity");
 const deportment = document.querySelector(".deportment");
 const prescriptionPeriod = document.querySelector(".prescription-period");
+const infoContainer = document.querySelector(".info-container");
+
 let crimes_committed = [];
 
 let crimes_n_punishment = {
@@ -226,6 +228,14 @@ function nextQuestion() {
 function skipQuestion(num) {
   idx = num;
   displayQuestion();
+}
+
+function displayInfoContainer(){
+  infoContainer.style.display = "block";
+}
+
+function closeInfoContainer(){
+  infoContainer.style.display = "none";
 }
 
 function checkAnswer(ans) {

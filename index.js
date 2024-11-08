@@ -73,11 +73,11 @@ let questions = [
   "Did the person sabotaged the person’s travel requirements to prevent trafficked persons from leaving the country?",
   "Did the person gain benefits from the labor or services of someone held in conditions of involuntary servitude, forced labor, or slavery?", // idx = 14
   // Qualified trafficking
-  "Is the trafficked person a child? ",
+  "Did the person trafficked a child?",
   "Did the person adopt a child through RA 8043 with the purpose of exploiting them for prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage, or to engage them in forced labor or slavery?",
-  "Was the trafficking conducted by a group of two or more people?",
-  "Is the offender a parent, sibling, or legal guardian of the trafficked person, or do they hold a position of authority over the trafficked person (e.g., police officer or any government position)?",
-  "Was the trafficked person recruited specifically for prostitution, and did the recruitment involve a member of the military or law enforcement",
+  "Was a trafficking conducted by a group of two or more people?",
+  "Is the person a parent, sibling, or a legal guardian that holds a position of authority over the trafficked person (e.g., police officer or any government position)?",
+  "Was the trafficked person recruited specifically for prostitution, and did the recruitment involve a member of the military or law enforcement?",
   "Is the person a member of the military or law enforcement agencies?",
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
   // Breach of Confidentiality
@@ -128,9 +128,8 @@ function endTest() {
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
   header.style.display = "block";
-  header.textContent = "Offenses";
+  header.textContent = "Offenses Committed";
   retryBtn.style.display = "inline-block";
-
   results.style.display = "block";
   addResults();
 }
@@ -144,8 +143,8 @@ function addResults() {
 
     // Create the h1 element for the crime
     const crimeElement = document.createElement("h1");
-    crimeElement.classList.add("crime");
-    crimeElement.textContent = "No law violated. noice";
+    crimeElement.classList.add("no-violations");
+    crimeElement.textContent = "No laws violated.";
 
     // Append the crime and punishment elements to the offense div
     offenseDiv.appendChild(crimeElement);
@@ -274,6 +273,9 @@ function checkAnswer(ans) {
       console.log("Is a syndicate!");
     }
   } else {
+    if (idx == 29){
+      idx++;
+    }
   }
   if (idx >= questions.length - 1) {
     endTest();

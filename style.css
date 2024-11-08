@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "Poppins"; /* Name to refer to the font in CSS */
+  src: url("./fonts/Poppins.ttf") format("truetype"); /* Path to the font file */
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   box-sizing: border-box;
+  /* font-family: "Poppins"; */
+  font-weight: 10;
 }
 html,
 body {
@@ -10,7 +18,11 @@ body {
 }
 
 body {
-  background: rgb(208, 208, 208);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(107, 93, 76, 0.5)),
+    url(./images/law_ph.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .main-container {
@@ -20,7 +32,7 @@ body {
   height: 90%;
   max-width: 1000px;
   max-height: 1200px;
-  background: white;
+  background: rgb(249, 234, 234);
   border: 2px solid black;
   border-radius: 0.5rem;
   position: absolute;
@@ -33,7 +45,7 @@ body {
   /* background-color: green; */
   margin: auto;
   width: 80%;
-  height: 70%;
+  height: 64%;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 2px solid black;
@@ -42,6 +54,29 @@ body {
   display: none;
 }
 
+/* Custom scrollbar */
+.results::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+}
+
+.results::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2); /* Track color */
+  border-radius: 6px; /* Rounded corners for the track */
+  background: transparent; /* Button color */
+}
+
+.results::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+.results::-webkit-scrollbar-thumb:hover {
+  background: rgb(50, 40, 18); /* Thumb color on hover */
+}
+
+.results::-webkit-scrollbar-button {
+  background: transparent; /* Button color */
+}
 
 .info-container {
   position: absolute;
@@ -69,7 +104,8 @@ body {
 
 .header {
   text-align: center;
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: bold;
 }
 
 p {
@@ -79,11 +115,21 @@ p {
   line-height: 1.5;
 }
 
-.question{
+.crime {
+  font-weight: bold;
+}
+.question {
   text-align: center;
   padding-inline: 3rem;
   margin-top: 3.5rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+}
+
+.no-violations{
+  text-align: center;
+  font-weight: bold;
+  line-height: 20rem;
+  font-size: 3rem;
 }
 
 /* .conditional{
@@ -103,16 +149,20 @@ p {
   gap: 0.5rem;
 }
 #start-btn {
-  background: lightblue;
+  background: rgb(52, 83, 93);
+  font-weight: bold;
 }
 #retry-btn {
-  background: pink;
+  background: rgb(52, 83, 93);
+  font-weight: bold;
 }
 #yes-btn {
-  background: rgb(9, 177, 9);
+  background: rgb(18, 134, 18);
+  font-weight: bold;
 }
 #no-btn {
-  background: rgb(228, 84, 84);
+  background: rgb(187, 63, 63);
+  font-weight: bold;
 }
 
 #no-btn,

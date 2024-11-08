@@ -36,10 +36,38 @@
         pretium scelerisque non. Facilisis in pellentesque luctus class amet.
       </p>
       <div class="btn-container">
-          <button type="button" class="ans-btn" id="yes-btn">YES</button>
-          <button type="button" class="ans-btn" id="no-btn">NO</button>
-          <!-- <button type="button" class="ans-btn" id="start-btn">START</button>
-          <button type="button" class="ans-btn" id="start-btn">RETRY</button> -->
+        <button
+          type="button"
+          class="ans-btn"
+          id="start-btn"
+          onclick="startTest()"
+        >
+          START
+        </button>
+        <button
+          type="button"
+          class="ans-btn"
+          id="yes-btn"
+          onclick="checkAnswer(true)"
+        >
+          YES
+        </button>
+        <button
+          type="button"
+          class="ans-btn"
+          id="no-btn"
+          onclick="checkAnswer(false)"
+        >
+          NO
+        </button>
+        <button
+          type="button"
+          class="ans-btn"
+          id="retry-btn"
+          onclick="startTest()"
+        >
+          RETRY
+        </button>
       </div>
     </div>
 

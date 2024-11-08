@@ -14,7 +14,7 @@ let crimes_committed = [];
 
 let crimes_n_punishment = {
   0: {
-    crime: " Acts of Trafficking",
+    crime: "Acts of Trafficking",
     punishment:
       "Imprisonment of twenty (20) years and a fine of not less than One million pesos (P1,000,000.00) but not more than Two million pesos (P2,000,000.00)",
   },
@@ -137,6 +137,20 @@ function endTest() {
 
 function addResults() {
   if (crimes_committed.length == 0) {
+    // Create the main offense div
+    console.log("SO PURE BRO");
+    const offenseDiv = document.createElement("div");
+    offenseDiv.classList.add("offense");
+
+    // Create the h1 element for the crime
+    const crimeElement = document.createElement("h1");
+    crimeElement.classList.add("crime");
+    crimeElement.textContent = "No law violated. noice";
+
+    // Append the crime and punishment elements to the offense div
+    offenseDiv.appendChild(crimeElement);
+    // Append the offense div to the offensesContainer
+    results.appendChild(offenseDiv);
     return;
   }
   crimes_committed.forEach((offense) => {
@@ -152,7 +166,16 @@ function addResults() {
     // Create the p element for the punishment
     const punishmentElement = document.createElement("p");
     punishmentElement.classList.add("punishment");
-    punishmentElement.textContent = offense.punishment;
+
+    if (offense.crime == "Use of trafficked Persons") {
+      if (moreThanOnce) {
+        punishmentElement.textContent = offense.subseqOffense.punishment;
+      } else {
+        punishmentElement.textContent = offense.firstOffense.punishment;
+      }
+    } else {
+      punishmentElement.textContent = offense.punishment;
+    }
 
     // Append the crime and punishment elements to the offense div
     offenseDiv.appendChild(crimeElement);

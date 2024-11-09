@@ -82,21 +82,21 @@ let questions = [
   "Was the trafficked person recruited specifically for prostitution, and did the recruitment involve a member of the military or law enforcement?",
   "Is the person a member of the military or law enforcement agencies?",
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
-  // Breach of Confidentiality
+  // Breach of Confidentiality (Section 7)
   "Did the person order a closed-door investigation to conceal the privacy of the trafficked person or the accused during the proceedings?",
   "Did the person fail to recognize the right to privacy of the trafficked person and the accused at any stage of the investigation?",
   "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
   "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
   "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
-  // If the person is an entity
+  // If the person is an entity Section 10 (e)
   "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
-  // If the person is a foreigner
+  // If the person is a foreigner Section 10(g)
   "Is the person a foreigner?",
-  // User of trafficked persons
+  // User of trafficked persons // Section 11
   "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
   "Did the person engage in the use of trafficked persons for prostitution more than once?",
-  // "Is a syndicate"
-  "Is the person involved operate as part of a syndicate?",
+  // "Is a syndicate" // In section 12, if the person is a syndicate, prescriptive period is 20
+  "Is the person involved part of a syndicate?",
 ];
 function displayQuestion() {
   questionText.textContent = questions[idx];
@@ -184,6 +184,8 @@ function addResults() {
 
     // Append the offense div to the offensesContainer
     results.appendChild(offenseDiv);
+    results.appendChild(document.createElement("hr"));
+
   });
   if (isEntity) {
     const entityParagraph = document.createElement("p");

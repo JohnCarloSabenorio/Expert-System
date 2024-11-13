@@ -115,12 +115,6 @@ let qualified_questions = [
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?",
 ];
 let breach_questions = [
-  "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
-  // If the person is a foreigner
-  "Is the person a foreigner?",
-  // User of trafficked persons
-  "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
-  "Did the person engage in the use of trafficked persons for prostitution more than once?",
   // If the person is an entity
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
   // Breach of Confidentiality (Section 7)
@@ -156,9 +150,6 @@ let crime_desc = [
   "Breach of Confidentiality (RA 9208) occurs when individuals, agencies, or institutions handling cases of human trafficking disclose confidential information regarding victims, perpetrators, or investigations. This breach is prohibited under Republic Act No. 9208, which protects the privacy and safety of trafficking victims. Violators can face penalties for disclosing sensitive information that may endanger victims or compromise legal proceedings.",
 ];
 
-  // "Is a syndicate" // In section 12, if the person is a syndicate, prescriptive period is 20
-  "Is the person involved part of a syndicate?",
-];
 function displayQuestion() {
   if (sectionNum == 1) {
     questionText.textContent = trafficking_questions[idx];
@@ -251,7 +242,6 @@ function addResults() {
     // Append the offense div to the offensesContainer
     results.appendChild(offenseDiv);
     results.appendChild(document.createElement("hr"));
-
   });
   if (isEntity) {
     const entityParagraph = document.createElement("p");
@@ -313,11 +303,14 @@ function closeInfoContainer() {
   isSyndicate = false; // handles the prescriptive period
   useTrafficked = false;
   moreThanOnce = false;
-  questionText.textContent = "";
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
   startBtn.style.display = "block";
+  retryBtn.style.display = "none";
   infoContainer.style.display = "none";
+  results.style.display = "none";
+  removeResults();
+  questionText.style.display = "block";
 }
 
 function checkAnswer(ans) {

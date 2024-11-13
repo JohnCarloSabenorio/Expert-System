@@ -29,9 +29,7 @@ body {
   position: relative;
   padding: 1rem;
   width: 60%;
-  height: 90%;
   max-width: 1000px;
-  max-height: 1200px;
   background: rgb(249, 234, 234);
   border: 2px solid black;
   border-radius: 0.5rem;
@@ -105,6 +103,47 @@ body {
   overflow-y: scroll;
 }
 
+.section-container {
+  background: green;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.section {
+  flex: 1 1 0; /* Equal width for each section */
+  box-sizing: border-box; /* Ensures padding does not affect width */
+  padding: 0.8rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-size: calc(1.3vw + 1.3vh); /* Adjusts based on both width and height */
+  cursor: pointer;
+}
+
+.section-4 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./images/human_trafficking.jpg);
+}
+
+.section-5 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./images/promotion_ht.png);
+}
+.section-6 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./images/qualified_trafficking.jpg);
+}
+.section-7 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./images/security_breach.jpg);
+}
+
 .def-container::-webkit-scrollbar {
   width: 12px; /* Width of the vertical scrollbar */
 }
@@ -132,6 +171,15 @@ body {
   text-align: center;
   font-size: 4rem;
   font-weight: bold;
+}
+
+.main-header {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  background: black;
 }
 
 p {
@@ -162,14 +210,12 @@ p {
   display: none;
 } */
 
-.term{
+.term {
   font-weight: bold;
 }
 .btn-container {
-  position: absolute;
   bottom: 3rem;
   left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -264,8 +310,12 @@ p {
   transition: background-color 0.3s ease;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1300px) {
   .main-container {
     width: 100%;
+  }
+
+  .section-container {
+    flex-direction: column;
   }
 }

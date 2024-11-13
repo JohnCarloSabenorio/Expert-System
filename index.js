@@ -48,6 +48,7 @@ let crimes_n_punishment = {
   },
 };
 
+let sectionNum = 1;
 let idx = 0;
 let isEntity = false; // checks whether penalty is imposed on the responsible owner of a person
 let isForeigner = false; // handles the barring of foreigners
@@ -56,38 +57,7 @@ let useTrafficked = false;
 let moreThanOnce = false;
 startBtn.addEventListener("click", startTest);
 
-let questions = [
-  // Trafficking Questions
-  "Did the person recruit, transport, harbor, provide, or receive any person under the pretext of employment or training, with the intent of subjecting them to prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
-  "Did the person introduce a woman to foreign nationals for marriage with the intent of acquiring, buying, offering, selling, or trading her for purposes of prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
-  "Did the person offer or arrange a real or simulated marriage with the intent of engaging the other person in prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
-  "Did the person undertake or organize tours and travel plans with the intent of offering prostitution, pornography, or sexual exploitation?",
-  "Did the person hire someone to engage in prostitution and pornography?",
-  "Did the person hire someone using force, threats, or violence with the intent to remove and sell their organ?",
-  "Did the person adopt someone for the purpose of sexual engagements, force labor, or involuntary service?",
-  "Did the person recruit, transport, or adopt a child with the purpose of engaging them in armed activities, either in the Philippines or abroad?", // idx = 7
-  // Promotion of human trafficking
-  "Is an establishment being used for the purpose of promoting trafficking in people?",
-  "Did the person forge his/her requirements for the purpose of promoting trafficking in persons?",
-  "Did the person use any means of advertising to promote human trafficking?",
-  "Did the person help obtain clearances or exit documents through misrepresentation or fraud, with the intent to secure pre-departure registration or services from government agencies, and to promote or facilitate trafficking in persons?",
-  "Did the person assist someone in entering or leaving the country through an airport, seaport, or border while possessing tampered, fake, or unauthorized travel documents, with the intent to promote or facilitate trafficking in persons?",
-  "Did the person sabotaged the person’s travel requirements to prevent trafficked persons from leaving the country?",
-  "Did the person gain benefits from the labor or services of someone held in conditions of involuntary servitude, forced labor, or slavery?", // idx = 14
-  // Qualified trafficking
-  "Did the person trafficked a child?",
-  "Did the person adopt a child through RA 8043 with the purpose of exploiting them for prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage, or to engage them in forced labor or slavery?",
-  "Was a trafficking conducted by a group of two or more people?",
-  "Is the person a parent, sibling, or a legal guardian that holds a position of authority over the trafficked person (e.g., police officer or any government position)?",
-  "Was the trafficked person recruited specifically for prostitution, and did the recruitment involve a member of the military or law enforcement?",
-  "Is the person a member of the military or law enforcement agencies?",
-  "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
-  // Breach of Confidentiality
-  "Did the person order a closed-door investigation to conceal the privacy of the trafficked person or the accused during the proceedings?",
-  "Did the person fail to recognize the right to privacy of the trafficked person and the accused at any stage of the investigation?",
-  "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
-  "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
-  "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
+let trafficking_questions = [
   // If the person is an entity
   "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
   // If the person is a foreigner
@@ -97,9 +67,91 @@ let questions = [
   "Did the person engage in the use of trafficked persons for prostitution more than once?",
   // "Is a syndicate"
   "Is the person involved operate as part of a syndicate?",
+  "Did the person recruit, transport, harbor, provide, or receive any person under the pretext of employment or training, with the intent of subjecting them to prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
+  "Did the person introduce a woman to foreign nationals for marriage with the intent of acquiring, buying, offering, selling, or trading her for purposes of prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
+  "Did the person offer or arrange a real or simulated marriage with the intent of engaging the other person in prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage?",
+  "Did the person undertake or organize tours and travel plans with the intent of offering prostitution, pornography, or sexual exploitation?",
+  "Did the person hire someone to engage in prostitution and pornography?",
+  "Did the person hire someone using force, threats, or violence with the intent to remove and sell their organ?",
+  "Did the person adopt someone for the purpose of sexual engagements, force labor, or involuntary service?",
+  "Did the person recruit, transport, or adopt a child with the purpose of engaging them in armed activities, either in the Philippines or abroad?",
 ];
+
+let promotion_questions = [
+  // If the person is an entity
+  "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
+  // If the person is a foreigner
+  "Is the person a foreigner?",
+  // User of trafficked persons
+  "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
+  "Did the person engage in the use of trafficked persons for prostitution more than once?",
+  // "Is a syndicate"
+  "Is the person involved operate as part of a syndicate?",
+  "Is an establishment being used for the purpose of promoting trafficking in people?",
+  "Did the person forge his/her requirements for the purpose of promoting trafficking in persons?",
+  "Did the person use any means of advertising to promote human trafficking?",
+  "Did the person help obtain clearances or exit documents through misrepresentation or fraud, with the intent to secure pre-departure registration or services from government agencies, and to promote or facilitate trafficking in persons?",
+  "Did the person assist someone in entering or leaving the country through an airport, seaport, or border while possessing tampered, fake, or unauthorized travel documents, with the intent to promote or facilitate trafficking in persons?",
+  "Did the person sabotaged the person’s travel requirements to prevent trafficked persons from leaving the country?",
+  "Did the person gain benefits from the labor or services of someone held in conditions of involuntary servitude, forced labor, or slavery?",
+];
+
+let qualified_questions = [
+  // If the person is an entity
+  "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
+  // If the person is a foreigner
+  "Is the person a foreigner?",
+  // User of trafficked persons
+  "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
+  "Did the person engage in the use of trafficked persons for prostitution more than once?",
+  // "Is a syndicate"
+  "Is the person involved operate as part of a syndicate?",
+  "Did the person trafficked a child?",
+  "Did the person adopt a child through RA 8043 with the purpose of exploiting them for prostitution, pornography, sexual exploitation, forced labor, slavery, involuntary servitude, or debt bondage, or to engage them in forced labor or slavery?",
+  "Was a trafficking conducted by a group of two or more people?",
+  "Is the person a parent, sibling, or a legal guardian that holds a position of authority over the trafficked person (e.g., police officer or any government position)?",
+  "Was the trafficked person recruited specifically for prostitution, and did the recruitment involve a member of the military or law enforcement?",
+  "Is the person a member of the military or law enforcement agencies?",
+  "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?",
+];
+let breach_questions = [
+  // If the person is an entity
+  "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
+  // If the person is a foreigner
+  "Is the person a foreigner?",
+  // User of trafficked persons
+  "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
+  "Did the person engage in the use of trafficked persons for prostitution more than once?",
+  // "Is a syndicate"
+  "Is the person involved operate as part of a syndicate?",
+  "Did the person order a closed-door investigation to conceal the privacy of the trafficked person or the accused during the proceedings?",
+  "Did the person fail to recognize the right to privacy of the trafficked person and the accused at any stage of the investigation?",
+  "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
+  "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
+  "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
+];
+
+let crime_desc = [
+  "Human Trafficking is the illegal act of recruiting, transporting, or harboring people through coercion, deceit, or force for purposes of exploitation, such as forced labor, sexual exploitation, or involuntary servitude. It is a severe violation of human rights and involves both domestic and international trafficking.",
+
+  "Promotion of Human Trafficking refers to the act of recruiting, providing, or offering individuals to traffickers with the intent of exploiting them. This includes activities such as advertisement, facilitation, or profiting from trafficking, which are punishable under the law.",
+  "Qualified Trafficking involves the trafficking of individuals under specific aggravating circumstances, such as when the victim is a minor or the trafficking involves more than one victim. This is treated more severely under Philippine law and carries harsher penalties.",
+
+  "Qualified Trafficking involves the trafficking of individuals under specific aggravating circumstances, such as when the victim is a minor or the trafficking involves more than one victim. This is treated more severely under Philippine law and carries harsher penalties.",
+
+  "Breach of Confidentiality (RA 9208) occurs when individuals, agencies, or institutions handling cases of human trafficking disclose confidential information regarding victims, perpetrators, or investigations. This breach is prohibited under Republic Act No. 9208, which protects the privacy and safety of trafficking victims. Violators can face penalties for disclosing sensitive information that may endanger victims or compromise legal proceedings.",
+];
+
 function displayQuestion() {
-  questionText.textContent = questions[idx];
+  if (sectionNum == 1) {
+    questionText.textContent = trafficking_questions[idx];
+  } else if (sectionNum == 2) {
+    questionText.textContent = promotion_questions[idx];
+  } else if (sectionNum == 3) {
+    questionText.textContent = qualified_questions[idx];
+  } else if (sectionNum == 4) {
+    questionText.textContent = breach_questions[idx];
+  }
 }
 
 function startTest() {
@@ -114,17 +166,14 @@ function startTest() {
   startBtn.style.display = "none";
   retryBtn.style.display = "none";
   questionText.style.display = "block";
-  header.textContent = "Republic Act No. 9208";
   results.style.display = "none";
   yesBtn.style.display = "inline-block";
   noBtn.style.display = "inline-block";
-  mainContainer.style.height = "70%";
 }
 
 function endTest() {
   idx = 0;
   console.log(crimes_committed);
-  mainContainer.style.height = "90%";
   questionText.textContent = "";
   questionText.style.display = "none";
   yesBtn.style.display = "none";
@@ -230,66 +279,76 @@ function skipQuestion(num) {
   displayQuestion();
 }
 
-function displayInfoContainer(){
+function displayInfoContainer(sectionNumber) {
+  sectionNum = sectionNumber;
+  header.textContent = crimes_n_punishment[sectionNumber - 1].crime;
+  questionText.textContent = crime_desc[sectionNumber];
   infoContainer.style.display = "block";
 }
 
-function closeInfoContainer(){
+function closeInfoContainer() {
+  sectionNum = 1;
+  idx = 0;
+  isEntity = false; // checks whether penalty is imposed on the responsible owner of a person
+  isForeigner = false; // handles the barring of foreigners
+  isSyndicate = false; // handles the prescriptive period
+  useTrafficked = false;
+  moreThanOnce = false;
+  questionText.textContent = "";
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+  startBtn.style.display = "block";
   infoContainer.style.display = "none";
 }
 
 function checkAnswer(ans) {
-  console.log(idx);
+  if (sectionNum == 1) {
+    if (idx >= trafficking_questions.length - 1) endTest();
+  } else if (sectionNum == 2) {
+    if (idx > promotion_questions.length - 1) endTest();
+  } else if (sectionNum == 3) {
+    if (idx > qualified_questions.length - 1) endTest();
+  } else if (sectionNum == 4) {
+    if (idx > breach_questions.length - 1) endTest();
+  }
   if (ans == true) {
-    if (idx <= 7) {
-      console.log("trafficking!");
-      crimes_committed.push(crimes_n_punishment[0]);
-      skipQuestion(8);
-      return;
-    } else if (idx <= 14) {
-      console.log("Promotion of trafficking!");
-      crimes_committed.push(crimes_n_punishment[1]);
-
-      skipQuestion(15);
-      return;
-    } else if (idx <= 21) {
-      console.log("Qualified trafficking!");
-      crimes_committed.push(crimes_n_punishment[2]);
-      skipQuestion(22);
-      return;
-    } else if (idx <= 26) {
-      console.log("Breach of confidentiality!");
-      crimes_committed.push(crimes_n_punishment[3]);
-      skipQuestion(27);
-      return;
-    } else if (idx == 27) {
-      isEntity = true;
-      console.log("entity!");
-    } else if (idx == 28) {
-      isForeigner = true;
-      console.log("foreigner!");
-    } else if (idx == 29) {
-      useTrafficked = true;
-      crimes_committed.push(crimes_n_punishment[4]);
-      console.log("User of trafficked persons!");
-    } else if (idx == 30) {
-      if (useTrafficked) {
-        moreThanOnce = true;
-        console.log("HOLY COW!");
+    if (idx <= 2) {
+      if (idx == 0) {
+        isEntity = true;
+      } else if (idx == 1) {
+        isForeigner = true;
+      } else if (idx == 2) {
+        useTrafficked = true;
       }
-      console.log("Is a syndicate!");
-    } else if (idx == 31) {
-      isSyndicate = true;
-      console.log("Is a syndicate!");
     }
-  } else {
-    if (idx == 29){
-      idx++;
+
+    if (idx == 3) {
+      moreThanOnce = true;
+    }
+    if (idx > 3) {
+      if (sectionNum == 1) {
+        console.log("TEST ENDED");
+        crimes_committed.push(crimes_n_punishment[0]);
+        endTest();
+        return;
+      } else if (sectionNum == 2) {
+        console.log("TEST ENDED");
+        crimes_committed.push(crimes_n_punishment[1]);
+        endTest();
+        return;
+      } else if (sectionNum == 3) {
+        console.log("TEST ENDED");
+        crimes_committed.push(crimes_n_punishment[2]);
+        endTest();
+        return;
+      } else if (sectionNum == 4) {
+        console.log("TEST ENDED");
+        crimes_committed.push(crimes_n_punishment[3]);
+        endTest();
+        return;
+      }
     }
   }
-  if (idx >= questions.length - 1) {
-    endTest();
-    return;
-  }
+
   nextQuestion();
 }

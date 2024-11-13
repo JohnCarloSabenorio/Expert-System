@@ -115,6 +115,12 @@ let qualified_questions = [
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?",
 ];
 let breach_questions = [
+  "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
+  // If the person is a foreigner
+  "Is the person a foreigner?",
+  // User of trafficked persons
+  "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
+  "Did the person engage in the use of trafficked persons for prostitution more than once?",
   // If the person is an entity
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
   // Breach of Confidentiality (Section 7)

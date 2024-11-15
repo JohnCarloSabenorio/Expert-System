@@ -185,7 +185,7 @@ function endTest() {
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
   header.style.display = "block";
-  header.textContent = "Offenses Committed";
+  header.textContent = "Offense Committed";
   retryBtn.style.display = "inline-block";
   results.style.display = "block";
   addResults();

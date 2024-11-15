@@ -337,7 +337,12 @@ function checkAnswer(ans) {
     if (idx == 3) {
       moreThanOnce = true;
     }
-    if (idx > 3) {
+
+    if(idx == 4){
+      isSyndicate = true;
+    }
+
+    if (idx > 4) {
       if (sectionNum == 1) {
         console.log("TEST ENDED");
         crimes_committed.push(crimes_n_punishment[0]);

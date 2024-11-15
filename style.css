@@ -39,7 +39,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 } */
-.main-container {
+.main-container,.mainhelp-container {
   position: absolute;
   width: 100%;
   height: auto;
@@ -92,7 +92,31 @@ body {
   background: transparent; /* Button color */
 }
 
-.info-container {
+.mainhelp-container::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+}
+
+.mainhelp-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2); /* Track color */
+  border-radius: 6px; /* Rounded corners for the track */
+  background: transparent; /* Button color */
+}
+
+.mainhelp-container::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 6px; /* Rounded corners for the thumb */
+}
+
+.mainhelp-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(50, 40, 18); /* Thumb color on hover */
+}
+
+.mainhelp-container::-webkit-scrollbar-button {
+  background: transparent; /* Button color */
+}
+
+
+.info-container,.help-container {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7); /* Black with 50% opacity */
   width: 100%;
@@ -102,6 +126,7 @@ body {
   display: none;
   overflow: auto; /* Enable scrolling when content overflows */
 }
+
 .def-container {
   position: relative;
   padding: 2rem;
@@ -207,7 +232,7 @@ p {
 .crime {
   font-weight: bold;
 }
-.question {
+.question,.introduction {
   text-align: center;
   padding-inline: 3rem;
   margin-top: 3.5rem;
@@ -308,12 +333,12 @@ p {
   transition: background-color 0.3s ease;
 }
 
-.close-container {
+.close-container,.closehelp-container {
   display: flex;
   justify-content: flex-end; /* Align items to the right */
   align-items: center; /* Center items vertically, optional */
 }
-.close-btn {
+.close-btn,.closehelp-btn {
   left: 0;
   border-radius: 50%;
   /* border: 2px solid black; */
@@ -330,7 +355,7 @@ hr {
   color: black !important;
   background-color: black !important;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   /* .main-container {
     position: absolute;
     width: 100%;
@@ -341,22 +366,22 @@ hr {
   }
 }
 @media (max-width: 768px) {
-  .main-container {
-    width: 100%; 
+  .main-container,.mainhelp-container {
+    width: 100%;
     padding: 0.5rem;
   }
 
-  .results{
+  .results {
     width: 100%;
   }
 }
 
 /* For screens smaller than 480px */
 @media (max-width: 480px) {
-  .main-container {
+  .main-container,.mainhelp-container {
     width: 100%;
     height: 100%;
-    padding: 0; 
+    padding: 0;
     top: 0;
     left: 0;
     transform: none;

@@ -11,6 +11,7 @@ const entity = document.querySelector(".entity");
 const deportment = document.querySelector(".deportment");
 const prescriptionPeriod = document.querySelector(".prescription-period");
 const infoContainer = document.querySelector(".info-container");
+const helpContainer = document.querySelector(".help-container");
 
 let crimes_committed = [];
 
@@ -302,6 +303,10 @@ function displayInfoContainer(sectionNumber) {
   infoContainer.style.display = "block";
 }
 
+function displayHelpContainer() {
+
+  helpContainer.style.display = "block";
+}
 function closeInfoContainer() {
   sectionNum = 1;
   idx = 0;
@@ -318,6 +323,17 @@ function closeInfoContainer() {
   results.style.display = "none";
   removeResults();
   questionText.style.display = "block";
+}
+function closeHelpContainer() {
+  sectionNum = 1;
+  idx = 0;
+  isEntity = false; // checks whether penalty is imposed on the responsible owner of a person
+  isForeigner = false; // handles the barring of foreigners
+  isSyndicate = false; // handles the prescriptive period
+  useTrafficked = false;
+  moreThanOnce = false;
+  helpContainer.style.display = "none";
+
 }
 
 function checkAnswer(ans) {

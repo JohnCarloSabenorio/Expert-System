@@ -115,28 +115,25 @@ let qualified_questions = [
   "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?",
 ];
 let breach_questions = [
-  // If the person is an entity
-  "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
-  // Breach of Confidentiality (Section 7)
-  "Did the person order a closed-door investigation to conceal the privacy of the trafficked person or the accused during the proceedings?",
-  "Did the person fail to recognize the right to privacy of the trafficked person and the accused at any stage of the investigation?",
-  "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
-  "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
-  "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
-  // If the person is an entity Section 10 (e)
   "Is a person the owner, president, partner, manager, or a responsible officer of the corporation, partnership, association, club, establishment, or any juridical person that participated in the commission of the crime or knowingly permitted or failed to prevent its commission?",
-  // If the person is a foreigner Section 10(g)
+  // If the person is a foreigner
   "Is the person a foreigner?",
-  // User of trafficked persons // Section 11
+  // User of trafficked persons
   "Did the person knowingly engaged the services of an individual who was trafficked for the purpose of prostitution?",
   "Did the person engage in the use of trafficked persons for prostitution more than once?",
-  // "Is a syndicate"
   "Is the person involved operate as part of a syndicate?",
-  "Did the person order a closed-door investigation to conceal the privacy of the trafficked person or the accused during the proceedings?",
-  "Did the person fail to recognize the right to privacy of the trafficked person and the accused at any stage of the investigation?",
-  "Did the person disclose personal information about the trafficked person or the accused to the public during the trial?",
-  "Did the person neglect to consider the best interests of the parties before deciding on confidentiality measures?",
-  "Did the person allow the identities and personal circumstances of the trafficked person or the accused to be publicly known throughout the legal process?", // 26
+
+  // "Did the person experience physical harm or mutilation and were they diagnosed with HIV/AIDS?", // idx = 21
+  // Breach of Confidentiality (Section 7)
+  "Did the person disclose the name or personal details of a trafficked person to the public?",
+  "Did the person disclose the name or personal details of an accused individual involved in a trafficking case to the public?",
+  "Did the person disclose any other information that could reveal the identity of a trafficked person or the accused?",
+  "Did the person cause any form of publicity regarding the case of trafficking in persons while an investigation, prosecution, or trial was ongoing?",
+  "If the trial or prosecution was held behind closed doors, did the person, in any media format (print, broadcast, or digital), publish or broadcast information about the trafficking case?",
+  "Is the person an editor, publisher, or reporter in print media who published details of the trafficking case?",
+  "Is the person an announcer, producer, or editor in television or radio who broadcasted details of the trafficking case?",
+  "Is the person a producer or director in the film industry who used details of the trafficking case in a production?",
+  "Did the person utilize tri-media (print, broadcast, or film) or digital platforms (including the internet) to release any information about the case of trafficking?",
 ];
 
 let crime_desc = [
@@ -280,7 +277,7 @@ function removeResults() {
 
 function nextQuestion() {
   idx++;
-  console.log("SECTION NUMBER: "+ sectionNum);
+  console.log("SECTION NUMBER: " + sectionNum);
   if (sectionNum == 1) {
     if (idx >= trafficking_questions.length - 1) endTest();
   } else if (sectionNum == 2) {
@@ -366,6 +363,9 @@ function checkAnswer(ans) {
         return;
       }
     }
+  }
+  if (idx == 2 && ans == false){
+    idx++;
   }
 
   nextQuestion();

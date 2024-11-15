@@ -280,6 +280,16 @@ function removeResults() {
 
 function nextQuestion() {
   idx++;
+  console.log("SECTION NUMBER: "+ sectionNum);
+  if (sectionNum == 1) {
+    if (idx >= trafficking_questions.length - 1) endTest();
+  } else if (sectionNum == 2) {
+    if (idx > promotion_questions.length - 1) endTest();
+  } else if (sectionNum == 3) {
+    if (idx > qualified_questions.length - 1) endTest();
+  } else if (sectionNum == 4) {
+    if (idx > breach_questions.length - 1) endTest();
+  }
   displayQuestion();
 }
 
@@ -314,15 +324,6 @@ function closeInfoContainer() {
 }
 
 function checkAnswer(ans) {
-  if (sectionNum == 1) {
-    if (idx >= trafficking_questions.length - 1) endTest();
-  } else if (sectionNum == 2) {
-    if (idx > promotion_questions.length - 1) endTest();
-  } else if (sectionNum == 3) {
-    if (idx > qualified_questions.length - 1) endTest();
-  } else if (sectionNum == 4) {
-    if (idx > breach_questions.length - 1) endTest();
-  }
   if (ans == true) {
     if (idx <= 2) {
       if (idx == 0) {
@@ -338,7 +339,7 @@ function checkAnswer(ans) {
       moreThanOnce = true;
     }
 
-    if(idx == 4){
+    if (idx == 4) {
       isSyndicate = true;
     }
 

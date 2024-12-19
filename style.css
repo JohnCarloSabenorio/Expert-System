@@ -341,9 +341,9 @@ p {
 .close-btn,.closehelp-btn {
   left: 0;
   border-radius: 50%;
-  /* border: 2px solid black; */
   background: none;
   color: black;
+  border: none;
   font-size: 80px;
   text-align: center;
   line-height: 50px;
